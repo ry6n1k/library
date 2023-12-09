@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
@@ -24,7 +25,8 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id", nullable = false, updatable = false)
-    @JsonBackReference
+    @JsonIgnoreProperties("comments")
+    //@JsonBackReference
     private Book book;
 
     public Comment() {

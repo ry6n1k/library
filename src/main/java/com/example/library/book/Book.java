@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -25,7 +26,8 @@ public class Book {
     private String name;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    //@JsonManagedReference
+    @JsonIgnoreProperties("book")
     private Set<Comment> comments = new HashSet<>();
 
     // public void addComment(Comment comment) {
